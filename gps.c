@@ -71,3 +71,62 @@ latitudefraction=atoi(token2);
 							longitudefraction = atoi(token4);
 latitude=latitudeint+(double)((double)latitudefraction)/((double)100000);
 							longitude=longitudeint+(double)((double)longitudefraction)/((double)100000);
+							deg = latitude / 100;
+               min = latitude - (double)(deg * 100);
+							sec = min / 60.00;
+                result = deg + sec;
+               arr[k] = result;//save the latitude reading of nth point 							
+	arr1[0]=arr[k]	 ;							
+k++;	
+                deg = longitude / 100;
+                min = longitude - (double)(deg * 100);
+                sec = min / 60.00;
+                result = deg + sec;
+							arr[k] = result;//save the longitude reading of nth point 
+		arr1[1]=arr[k]	 ;	              
+	k++;
+			SysTick_Wait1ms(5);
+			 if (k == 4)
+                {
+                    if((int)arr[2] > 29 && (int)arr[3] > 30){
+											
+										DISTANCE= ( (arr[2]-arr[0]) * (arr[2]-arr[0]) ) ; 
+											DISTANCE2= ( (arr[3]-arr[1]) * (arr[3]-arr[1]) ) ;
+											DISTANCE=DISTANCE+DISTANCE2 ;
+								DISTANCE= sqrt(DISTANCE) ;
+											DISTANCE=DISTANCE *110000 ;					
+											arr[0] = arr[2];
+                        arr[1] = arr[3];
+                    }
+                    k = 2;		
+                }
+
+            }
+	else
+	{
+		i=0 ;
+	}								
+						
+						
+ break;
+        default:
+            i = 0;
+            break;
+				}				
+	} 	while (i != 7);
+}
+
+
+long double dis(volatile double latitude_2, volatile double logitude_2){
+		int R=6371000; //Earth radius 
+    double phi1 = arr1[0]*PI/180; 
+    double phi2 = latitude_2*PI/180;
+    double deltaphi = phi2-phi1 ;
+    double lambda = (logitude_2-arr1[1])*PI/180;
+    double a = sin(deltaphi/2)*sin(deltaphi/2)+cos(phi1)*cos(phi2)*sin(lambda/2)*sin(lambda/2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+  double d = R*c;
+return d ;
+}
+
+
