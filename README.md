@@ -9,6 +9,7 @@ destination is about to be reached < 5 meters.
 {if the diplacment is less the 5 meters the led turns yellow then delay then turns green and keep the green led only if the distance didn't change to be more than 5 meters }
  Stage 3: The built-in LED will be turned on(red) when the target destination is far away by distance > 5 meters.
  CONTRIBUTIONS :
+
               gps.c : Emad medhat 2000324 and Peter ibrahim 2000270
               delay.c: Youssef Samir 1901012  and Abdullah sadek 2101719
               uart.c: Saleh Ehab 18W3168
