@@ -53,4 +53,50 @@ UART_OutString("           ") ;
 	if (DISTANCE<5)
 	{
 xx+=DISTANCE ;
+	}
+x=dis( 30.06544 , 31.27718) ; 
+		
+		if(x>5){
+			ledred();
+			print=1;
+		}
+		else
+		{
+		if(print==1){
+			ledyellow();
+		}
+SysTick_Wait1s(4) ;
+			ledgreen();
+SysTick_Wait1s(2) ;
+			if(prnt==1){
+				readGPSs(startAndEnd);
+				c=tostring(startAndEnd[0],5) ;
+				UART_OutString("   lat of last point : ") ;
+				UART_OutString(c) ;
+	UART_OutString("   long of last point : ") ;
+				z=toString(startAndEnd[1],5) ;	
+								UART_OutString(z) ;
+	c=toString(xx,4) ;
+					UART_OutString("   TOTAL DISTANCE IS  : ") ;
+UART_OutString(c) ;
+	UART_OutString("   ") ;
+print=0;
+				SysTick_Wait1s(2) ;
+			}
+		
+		}
+		
+ /*
+	 u=toString(x,5) ;
+	UART_OutString("   linear distance is : ") ;
+UART_OutString(u) ;
+UART_OutString("           ") ;	
+	*/
+
+	
+}
+}
+
+
+
 
